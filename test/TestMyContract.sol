@@ -6,15 +6,19 @@ import "../contracts/MyContract.sol";
 
 contract TestMyContract {
 
-function testInitialStoredValue() {
+  function testInitialStoredValue() 
+    public
+  {
     MyContract mycontract = new MyContract();
 
     uint expected = 24;
 
     Assert.equal(mycontract.mynumber(), expected, "First number set should be 24.");
-}
+  }
 
-function testTheThrow() {
+  function testTheThrow() 
+    public
+  {
     MyContract mycontract = new MyContract(); 
 
     ThrowProxy throwproxy = new ThrowProxy(address(mycontract)); 
@@ -25,9 +29,11 @@ function testTheThrow() {
 
     Assert.isFalse(r, "Should be false because is should throw!");
 
-}
+  }
 
-function testNoThrow() {
+  function testNoThrow() 
+    public
+  {
     MyContract mycontract = new MyContract(); 
 
     ThrowProxy throwproxy = new ThrowProxy(address(mycontract)); 
@@ -38,7 +44,7 @@ function testNoThrow() {
 
     Assert.isTrue(r, "Should be true because is should throw!");
 
-}
+  }
 
 }
 
@@ -47,16 +53,23 @@ contract ThrowProxy {
   address public target;
   bytes data;
 
-  function ThrowProxy(address _target) {
+  constructor(address _target)
+    public
+  {
     target = _target;
   }
 
   //prime the data using the fallback function.
-  function() {
+  function() 
+    public 
+  {
     data = msg.data;
   }
 
-  function execute() returns (bool) {
+  function execute() 
+    public
+    returns (bool) 
+  {
     return target.call(data);
   }
 }
