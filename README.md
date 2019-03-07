@@ -6,8 +6,8 @@ A simple example of testing require() in Truffle using Solidity tests.
 Ensure `truffle version` is latest  
   
 ```
-Truffle v4.1.13 (core: 4.1.13)
-Solidity v0.4.24 (solc-js)
+Truffle v5.0.7 (core: 5.0.7)
+Solidity v0.5.3
 ```
 
 Run ganache-cli or if it's not already running  
